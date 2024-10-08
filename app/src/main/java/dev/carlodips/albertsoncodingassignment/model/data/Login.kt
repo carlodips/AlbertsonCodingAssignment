@@ -1,4 +1,4 @@
-package dev.carlodips.albertsoncodingassignment.model
+package dev.carlodips.albertsoncodingassignment.model.data
 
 data class Login(
     val md5: String,
