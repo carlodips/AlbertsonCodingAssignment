@@ -97,6 +97,9 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-compose:2.5.0")
 
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
     // Local Unit Tests
     implementation("androidx.test:core:1.5.0")
 }

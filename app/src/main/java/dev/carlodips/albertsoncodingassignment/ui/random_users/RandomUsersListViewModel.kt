@@ -27,10 +27,9 @@ class RandomUsersListViewModel @Inject constructor(
     private val randomUsersRepository: RandomUsersRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
     private val numberOfUsers = savedStateHandle.get<Int>(Constants.NUMBER_OF_USERS)
 
-    val ldNavigateToDetails = MutableLiveData<Event<RandomUser>>()
+    val ldNavigateToDetails = MutableLiveData<Event<Int>>()
 
     val ldShowToast = MutableLiveData<String>()
 

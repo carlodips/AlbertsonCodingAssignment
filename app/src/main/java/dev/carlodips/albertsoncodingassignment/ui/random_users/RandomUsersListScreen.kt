@@ -44,7 +44,7 @@ sealed class RandomUsersListUIState {
     data object Error : RandomUsersListUIState()
     class Success(
         val listUsers: SnapshotStateList<RandomUser>,
-        val navigateToDetails: (result: RandomUser) -> Unit
+        val navigateToDetails: (index: Int) -> Unit
     ) : RandomUsersListUIState()
 }
 
@@ -88,7 +88,7 @@ fun RandomUsersList(
     LazyColumn(modifier = modifier.fillMaxSize()) {
         itemsIndexed(uiState.listUsers) { index, item ->
             RandomUserItem(user = item) {
-                uiState.navigateToDetails.invoke(item)
+                uiState.navigateToDetails.invoke(index)
             }
         }
     }

@@ -7,11 +7,13 @@ import dagger.hilt.components.SingletonComponent
 import dev.carlodips.albertsoncodingassignment.api.RandomUsersAPI
 import dev.carlodips.albertsoncodingassignment.model.repository.RandomUsersRepository
 import dev.carlodips.albertsoncodingassignment.model.repository.RandomUsersRepositoryImpl
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object RepositoryModule {
     @Provides
+    @Singleton
     fun provideRandomUsersRepository(
         api: RandomUsersAPI
     ): RandomUsersRepository {

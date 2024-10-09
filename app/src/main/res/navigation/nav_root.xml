@@ -23,5 +23,18 @@
             android:name="numberOfUsers"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_randomUsersListFragment_to_randomUserDetailsFragment"
+            app:destination="@id/randomUserDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/randomUserDetailsFragment"
+        android:name="dev.carlodips.albertsoncodingassignment.ui.details.RandomUserDetailsFragment"
+        android:label="RandomUserDetailsFragment" >
+        <argument
+            android:name="userIndex"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
 </navigation>
