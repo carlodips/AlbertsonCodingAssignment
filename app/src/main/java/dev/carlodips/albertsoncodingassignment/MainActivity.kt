@@ -1,48 +1,33 @@
 package dev.carlodips.albertsoncodingassignment
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
-import dev.carlodips.albertsoncodingassignment.ui.theme.AlbertsonCodingAssignmentTheme
+import dev.carlodips.albertsoncodingassignment.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            AlbertsonCodingAssignmentTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.appbar)
+        supportActionBar?.elevation = 2f
+        setStartingNavGraph()
+
+        supportActionBar?.title = applicationContext.getString(R.string.app_name)
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    private fun setStartingNavGraph() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(binding.mainContent.id) as NavHostFragment
+        val navController = navHostFragment.navController
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AlbertsonCodingAssignmentTheme {
-        Greeting("Android")
+        navController.graph = navController.navInflater.inflate(R.navigation.nav_root)
     }
 }

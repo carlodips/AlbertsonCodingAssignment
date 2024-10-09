@@ -1,6 +1,6 @@
 package dev.carlodips.albertsoncodingassignment.model.data
 
-data class Result(
+data class RandomUser(
     val cell: String,
     val dob: Dob,
     val email: String,
@@ -13,4 +13,13 @@ data class Result(
     val phone: String,
     val picture: Picture,
     val registered: Registered
-)
+) {
+    fun getDisplayName(): String {
+        return "${name.first} ${name.last}"
+    }
+
+    fun getDisplayAddress(): String {
+        return "${location.street.number} ${location.street.name} ${location.city}" +
+                " ${location.state} ${location.postcode} ${location.country}"
+    }
+}

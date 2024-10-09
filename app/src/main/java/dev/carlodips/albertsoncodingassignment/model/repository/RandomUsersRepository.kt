@@ -1,8 +1,8 @@
 package dev.carlodips.albertsoncodingassignment.model.repository
 
-import dev.carlodips.albertsoncodingassignment.model.data.RandomUsersResp
-import retrofit2.Response
+import dev.carlodips.albertsoncodingassignment.model.resp.RandomUsersResp
+import dev.carlodips.albertsoncodingassignment.api.NetworkResult
 
 interface RandomUsersRepository {
-    suspend fun getRandomUsers(numberOfUsers: Int): Response<RandomUsersResp>
+    suspend fun getRandomUsers(numberOfUsers: Int): NetworkResult<RandomUsersResp>
 }
