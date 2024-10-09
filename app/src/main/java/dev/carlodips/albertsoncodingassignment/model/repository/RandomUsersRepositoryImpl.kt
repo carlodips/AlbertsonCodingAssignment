@@ -1,22 +1,20 @@
 package dev.carlodips.albertsoncodingassignment.model.repository
 
 import dev.carlodips.albertsoncodingassignment.api.NetworkResult
-import dev.carlodips.albertsoncodingassignment.api.RandomUsersAPI
 import dev.carlodips.albertsoncodingassignment.model.data.RandomUser
+import dev.carlodips.albertsoncodingassignment.model.remote_source.RandomUsersRemoteDataSource
 import dev.carlodips.albertsoncodingassignment.model.resp.RandomUsersResp
-import javax.inject.Singleton
+import javax.inject.Inject
 
-class RandomUsersRepositoryImpl(
-    private val api: RandomUsersAPI
+class RandomUsersRepositoryImpl @Inject constructor(
+    private val remoteDataSource: RandomUsersRemoteDataSource
 ) : RandomUsersRepository {
 
     var listRandomUsers: ArrayList<RandomUser>? = null
         private set
 
     override suspend fun getRandomUsers(numberOfUsers: Int): NetworkResult<RandomUsersResp> {
-        val result = NetworkResult.handleApi {
-            api.getRandomUsers(numberOfUsers)
-        }
+        val result = remoteDataSource.getRandomUsers(numberOfUsers)
 
         if (result is NetworkResult.Success) {
             listRandomUsers = ArrayList(result.data.results)

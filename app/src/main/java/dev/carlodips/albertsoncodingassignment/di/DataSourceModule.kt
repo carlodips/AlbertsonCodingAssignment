@@ -4,19 +4,19 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.carlodips.albertsoncodingassignment.api.RandomUsersAPI
 import dev.carlodips.albertsoncodingassignment.model.remote_source.RandomUsersRemoteDataSource
-import dev.carlodips.albertsoncodingassignment.model.repository.RandomUsersRepository
-import dev.carlodips.albertsoncodingassignment.model.repository.RandomUsersRepositoryImpl
+import dev.carlodips.albertsoncodingassignment.model.remote_source.RandomUsersRemoteDataSourceImpl
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+object DataSourceModule {
     @Provides
     @Singleton
-    fun provideRandomUsersRepository(
-        dataSource: RandomUsersRemoteDataSource
-    ): RandomUsersRepository {
-        return RandomUsersRepositoryImpl(dataSource)
+    fun provideRandomUsersRemoteDataSource(
+        api: RandomUsersAPI
+    ): RandomUsersRemoteDataSource {
+        return RandomUsersRemoteDataSourceImpl(api)
     }
 }
