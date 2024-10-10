@@ -2,14 +2,14 @@ package dev.carlodips.albertsoncodingassignment.ui.search
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.*
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 
 
-// TODO: For some reason, The tests only run when running testDebugUnitTest in Gradle tab
 class SearchViewModelTest {
 
     private lateinit var viewModel: SearchViewModel
