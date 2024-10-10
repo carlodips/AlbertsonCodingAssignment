@@ -10,7 +10,7 @@ interface RandomUsersAPI {
     @GET("api/")
     suspend fun getRandomUsers(
         @Query("results") numberOfUsers: Int,
-        @Query("page") page: Int?,
-        @Query("seed") seed: String?
+        @Query("page") page: Int? = null,
+        @Query("seed") seed: String? = null
     ): Response<RandomUsersResp>
 }

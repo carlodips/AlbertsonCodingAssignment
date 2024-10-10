@@ -1,10 +1,10 @@
 package dev.carlodips.albertsoncodingassignment.ui.random_users
 
 import androidx.lifecycle.SavedStateHandle
+import dev.carlodips.albertsoncodingassignment.RandomUsersApplication
 import dev.carlodips.albertsoncodingassignment.model.repository.RandomUsersRepository
 import dev.carlodips.albertsoncodingassignment.utils.Constants
 import org.junit.Before
-import org.junit.Test
 import org.mockito.Mockito.mock
 
 class RandomUsersListViewModelTest {
@@ -13,7 +13,9 @@ class RandomUsersListViewModelTest {
     @Before
     fun setup() {
         val repo: RandomUsersRepository = mock()
+        val application: RandomUsersApplication = mock()
         val savedStateHandle = SavedStateHandle(mapOf(Constants.NUMBER_OF_USERS to 10))
-        vm = RandomUsersListViewModel(repo, savedStateHandle)
+        vm = RandomUsersListViewModel(application, repo, savedStateHandle)
     }
+
 }

@@ -68,9 +68,15 @@ fun RandomUsersListScreen(
 
             when (val currentUiState = stateUiState.value) {
                 is RandomUsersListUIState.Success -> {
+                    val msg = if (currentUiState.input.toInt() < 2) {
+                        "You have requested for ${currentUiState.input} user"
+                    } else {
+                        "You have requested for ${currentUiState.input} users"
+                    }
+
                     Text(
                         modifier = Modifier.padding(horizontal = 16.dp),
-                        text = "You have requested for ${currentUiState.input} users"
+                        text = msg
                     )
 
                     RandomUsersList(uiState = currentUiState)
