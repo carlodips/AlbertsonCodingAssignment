@@ -26,7 +26,6 @@ class SearchFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         binding.vm = vm
         binding.lifecycleOwner = viewLifecycleOwner

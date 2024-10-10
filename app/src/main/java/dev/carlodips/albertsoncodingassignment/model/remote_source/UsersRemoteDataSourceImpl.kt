@@ -3,11 +3,10 @@ package dev.carlodips.albertsoncodingassignment.model.remote_source
 import dev.carlodips.albertsoncodingassignment.api.NetworkResult
 import dev.carlodips.albertsoncodingassignment.api.RandomUsersAPI
 import dev.carlodips.albertsoncodingassignment.model.resp.RandomUsersResp
-import javax.inject.Inject
 
-class RandomUsersRemoteDataSourceImpl @Inject constructor(
+class UsersRemoteDataSourceImpl (
     private val api: RandomUsersAPI
-): RandomUsersRemoteDataSource {
+): UsersRemoteDataSource {
     override suspend fun getRandomUsers(numberOfUsers: Int): NetworkResult<RandomUsersResp> {
         val result = NetworkResult.handleApi {
             api.getRandomUsers(numberOfUsers)

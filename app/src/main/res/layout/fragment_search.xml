@@ -2,7 +2,6 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="vm"
             type="dev.carlodips.albertsoncodingassignment.ui.search.SearchViewModel" />

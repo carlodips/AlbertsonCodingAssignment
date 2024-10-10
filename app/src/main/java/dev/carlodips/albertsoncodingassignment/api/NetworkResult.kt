@@ -16,7 +16,9 @@ sealed class NetworkResult<T : Any> {
                 val response = execute()
 
                 if (response.isSuccessful) {
-                    Success(response.code(), response.body()!!)
+                    response.body()?.let {
+                        Success(response.code(), it)
+                    } ?: Error(response.code(), "Error Occurred")
                 } else {
                     Error(response.code(), response.errorBody()?.string())
                 }

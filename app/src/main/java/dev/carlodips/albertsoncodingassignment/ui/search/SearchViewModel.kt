@@ -1,20 +1,13 @@
 package dev.carlodips.albertsoncodingassignment.ui.search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.carlodips.albertsoncodingassignment.model.repository.RandomUsersRepository
 import dev.carlodips.albertsoncodingassignment.utils.Event
 import dev.carlodips.albertsoncodingassignment.utils.toEvent
-import javax.inject.Inject
 
-@HiltViewModel
-class SearchViewModel @Inject constructor(
-    private val randomUsersRepository: RandomUsersRepository
-) : ViewModel() {
+class SearchViewModel : ViewModel() {
 
     val ldInput = MutableLiveData<String>()
 
@@ -37,7 +30,7 @@ class SearchViewModel @Inject constructor(
         ldNavigate.value = ldInput.value!!.toEvent()
     }
 
-    private fun isInputValid(): Boolean {
+    fun isInputValid(): Boolean {
         val pair = when {
             ldInput.value.isNullOrBlank() -> false to "Input cannot be blank"
 

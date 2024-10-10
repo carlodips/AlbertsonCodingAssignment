@@ -3,6 +3,7 @@ package dev.carlodips.albertsoncodingassignment.utils
 import dev.carlodips.albertsoncodingassignment.model.data.Coordinates
 import dev.carlodips.albertsoncodingassignment.model.data.Dob
 import dev.carlodips.albertsoncodingassignment.model.data.Id
+import dev.carlodips.albertsoncodingassignment.model.data.Info
 import dev.carlodips.albertsoncodingassignment.model.data.Location
 import dev.carlodips.albertsoncodingassignment.model.data.Login
 import dev.carlodips.albertsoncodingassignment.model.data.Name
@@ -11,6 +12,7 @@ import dev.carlodips.albertsoncodingassignment.model.data.RandomUser
 import dev.carlodips.albertsoncodingassignment.model.data.Registered
 import dev.carlodips.albertsoncodingassignment.model.data.Street
 import dev.carlodips.albertsoncodingassignment.model.data.Timezone
+import dev.carlodips.albertsoncodingassignment.model.resp.RandomUsersResp
 
 class MockData {
     companion object {
@@ -71,8 +73,25 @@ class MockData {
                 thumbnail = "https://randomuser.me/api/portraits/thumb/men/75.jpg"
             ),
             nat = "US"
-
-
         )
+
+        fun getSearchMockResponse(numberOfUsers: Int): RandomUsersResp {
+
+            val listResults = ArrayList<RandomUser>().apply {
+                for (i in 1..numberOfUsers) {
+                    add(randomUser)
+                }
+            }
+
+            return RandomUsersResp(
+                results = listResults,
+                info = Info(
+                    seed = "56d27f4a53bd5441",
+                    results = 1,
+                    page = 1,
+                    version = "1.4"
+                )
+            )
+        }
     }
 }

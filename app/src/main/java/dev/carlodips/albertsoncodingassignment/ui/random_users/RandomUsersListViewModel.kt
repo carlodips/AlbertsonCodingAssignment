@@ -56,11 +56,15 @@ class RandomUsersListViewModel @Inject constructor(
                 }
             }
 
-            withContext(Dispatchers.IO) {
-                val resp = randomUsersRepository.getRandomUsers(numberOfUsers = numberOfUsers)
+            val resp = withContext(Dispatchers.IO) {
+                randomUsersRepository.getRandomUsers(numberOfUsers = numberOfUsers)
+            }
 
+            withContext(Dispatchers.Main) {
                 when (resp) {
                     is NetworkResult.Success -> {
+                        if (resp.data.results == null) return@withContext
+
                         _uiState.update {
                             RandomUsersListUIState.Success(
                                 listUsers = resp.data.results.toMutableStateList(),
