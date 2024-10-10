@@ -14,8 +14,8 @@ import org.mockito.Mockito.`when`
 // TODO: For some reason, The tests only run when running testDebugUnitTest in Gradle tab
 class RandomUsersRepositoryImplTest {
 
-    lateinit var remoteDataSource: UsersRemoteDataSource /*= mock()*/
-    lateinit var repo: RandomUsersRepositoryImpl
+    private lateinit var remoteDataSource: UsersRemoteDataSource /*= mock()*/
+    private lateinit var repo: RandomUsersRepositoryImpl
 
     @Before
     fun setup() {

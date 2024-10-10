@@ -8,7 +8,7 @@ import org.junit.Before
 import org.mockito.Mockito.mock
 
 class RandomUsersListViewModelTest {
-    lateinit var vm: RandomUsersListViewModel
+    private lateinit var vm: RandomUsersListViewModel
 
     @Before
     fun setup() {

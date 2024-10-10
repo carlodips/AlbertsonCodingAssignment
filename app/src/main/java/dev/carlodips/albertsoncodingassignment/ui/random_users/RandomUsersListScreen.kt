@@ -85,6 +85,7 @@ fun RandomUsersListScreen(
                 is RandomUsersListUIState.Error -> {
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Text(
+                            modifier = Modifier.padding(horizontal = 16.dp),
                             style = MaterialTheme.typography.titleLarge,
                             textAlign = TextAlign.Center,
                             text = currentUiState.errorMessage

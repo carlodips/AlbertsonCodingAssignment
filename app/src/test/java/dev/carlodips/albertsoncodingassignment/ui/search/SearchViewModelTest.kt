@@ -12,7 +12,7 @@ import org.junit.rules.TestRule
 // TODO: For some reason, The tests only run when running testDebugUnitTest in Gradle tab
 class SearchViewModelTest {
 
-    lateinit var viewModel: SearchViewModel
+    private lateinit var viewModel: SearchViewModel
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
