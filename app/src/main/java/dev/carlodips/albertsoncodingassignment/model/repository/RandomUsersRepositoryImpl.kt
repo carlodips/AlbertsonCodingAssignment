@@ -12,11 +12,19 @@ class RandomUsersRepositoryImpl(
     var listRandomUsers: ArrayList<RandomUser>? = null
         private set
 
-    override suspend fun getRandomUsers(numberOfUsers: Int): NetworkResult<RandomUsersResp> {
-        val result = remoteDataSource.getRandomUsers(numberOfUsers)
+    override suspend fun getRandomUsers(
+        numberOfUsers: Int,
+        pageNo: Int?,
+        seed: String?
+    ): NetworkResult<RandomUsersResp> {
+        val result = remoteDataSource.getRandomUsers(
+            numberOfUsers = numberOfUsers,
+            pageNo = pageNo,
+            seed = seed
+        )
 
         if (result is NetworkResult.Success) {
-            listRandomUsers = ArrayList(result.data.results)
+            listRandomUsers = result.data.results?.let { ArrayList(it) }
         }
 
         return result

@@ -4,5 +4,9 @@ import dev.carlodips.albertsoncodingassignment.api.NetworkResult
 import dev.carlodips.albertsoncodingassignment.model.resp.RandomUsersResp
 
 interface UsersRemoteDataSource {
-    suspend fun getRandomUsers(numberOfUsers: Int): NetworkResult<RandomUsersResp>
+    suspend fun getRandomUsers(
+        numberOfUsers: Int,
+        pageNo: Int?,
+        seed: String?
+    ): NetworkResult<RandomUsersResp>
 }

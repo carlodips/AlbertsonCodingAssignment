@@ -24,11 +24,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -41,8 +43,9 @@ import kotlinx.coroutines.flow.StateFlow
 
 sealed class RandomUsersListUIState {
     data object Loading : RandomUsersListUIState()
-    data object Error : RandomUsersListUIState()
+    data class Error(val errorMessage: String) : RandomUsersListUIState()
     class Success(
+        val input: String,
         val listUsers: SnapshotStateList<RandomUser>,
         val navigateToDetails: (index: Int) -> Unit
     ) : RandomUsersListUIState()
@@ -53,19 +56,37 @@ fun RandomUsersListScreen(
     modifier: Modifier = Modifier,
     uiState: StateFlow<RandomUsersListUIState>
 ) {
+
     val stateUiState = uiState.collectAsStateWithLifecycle(RandomUsersListUIState.Loading)
 
-    Surface(modifier = modifier.fillMaxSize()) {
-        Column() {
+    Surface(
+        modifier = modifier.fillMaxSize(),
+        color = Color.White
+    ) {
+        Column {
             Spacer(modifier = Modifier.height(24.dp))
 
             when (val currentUiState = stateUiState.value) {
                 is RandomUsersListUIState.Success -> {
+                    Text(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        text = "You have requested for ${currentUiState.input} users"
+                    )
+
                     RandomUsersList(uiState = currentUiState)
                 }
 
-                RandomUsersListUIState.Error -> TODO()
-                RandomUsersListUIState.Loading -> {
+                is RandomUsersListUIState.Error -> {
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            style = MaterialTheme.typography.titleLarge,
+                            textAlign = TextAlign.Center,
+                            text = currentUiState.errorMessage
+                        )
+                    }
+                }
+
+                is RandomUsersListUIState.Loading -> {
                     Column(modifier = Modifier.align(Alignment.CenterHorizontally)) {
                         Spacer(modifier = Modifier.height(16.dp))
                         CircularProgressIndicator(
@@ -158,6 +179,32 @@ fun RandomUserItem(
     }
 }
 
+@Preview
+@Composable
+fun PreviewRandomUsersListSuccess() {
+    AlbertsonCodingAssignmentTheme {
+        val user = MockData.randomUser
+
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = Color.White
+        ) {
+            Column {
+                RandomUsersList(
+                    uiState = RandomUsersListUIState.Success(
+                        input = "5",
+                        listUsers = arrayListOf(
+                            user, user, user, user
+                        ).toMutableStateList(),
+                        navigateToDetails = {}
+                    )
+                )
+            }
+        }
+
+
+    }
+}
 
 @Preview
 @Composable

@@ -16,9 +16,4 @@ class RandomUsersListViewModelTest {
         val savedStateHandle = SavedStateHandle(mapOf(Constants.NUMBER_OF_USERS to 10))
         vm = RandomUsersListViewModel(repo, savedStateHandle)
     }
-
-    @Test
-    fun test_number_of_users_has_value() {
-        vm.uiState.value
-    }
 }

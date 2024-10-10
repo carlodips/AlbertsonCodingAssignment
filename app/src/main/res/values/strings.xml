@@ -10,4 +10,8 @@
     <string name="label_phone">Phone</string>
     <string name="label_cell">Cell</string>
     <string name="label_email">Email Address</string>
+    <string name="msg_network_error">Network Error</string>
+    <string name="msg_no_internet_connection">No internet connection</string>
+    <string name="msg_network_failure">Network Failure</string>
+    <string name="msg_conversion_error">Conversion Error</string>
 </resources>
