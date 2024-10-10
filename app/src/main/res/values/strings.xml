@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Random Users Generator</string>
+    <string name="app_name">Random User Generator</string>
 
     <string name="label_input_number">Input a number</string>
     <string name="hint_search">up to 5000 only</string>
