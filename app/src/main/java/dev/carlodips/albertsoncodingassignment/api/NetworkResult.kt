@@ -16,14 +16,14 @@ sealed class NetworkResult<T : Any> {
                 val response = execute()
 
                 if (response.isSuccessful) {
-                    NetworkResult.Success(response.code(), response.body()!!)
+                    Success(response.code(), response.body()!!)
                 } else {
-                    NetworkResult.Error(response.code(), response.errorBody()?.string())
+                    Error(response.code(), response.errorBody()?.string())
                 }
             } catch (e: HttpException) {
-                NetworkResult.Error(e.code(), e.message())
+                Error(e.code(), e.message())
             } catch (e: Throwable) {
-                NetworkResult.Exception(e)
+                Exception(e)
             }
         }
     }

@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:hint="@string/hint_search"
+                app:errorText="@{vm.ldInputError}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textviewLabel">
@@ -41,11 +42,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.ldInput}"
-                    android:maxLength="4"
-                    android:inputType="number"
                     android:imeOptions="actionDone"
-                />
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:text="@={vm.ldInput}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
