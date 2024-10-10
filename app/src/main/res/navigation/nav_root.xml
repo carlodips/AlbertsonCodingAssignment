@@ -12,7 +12,11 @@
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_randomUsersListFragment"
-            app:destination="@id/randomUsersListFragment" />
+            app:destination="@id/randomUsersListFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
@@ -25,7 +29,11 @@
             android:defaultValue="0" />
         <action
             android:id="@+id/action_randomUsersListFragment_to_randomUserDetailsFragment"
-            app:destination="@id/randomUserDetailsFragment" />
+            app:destination="@id/randomUserDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
